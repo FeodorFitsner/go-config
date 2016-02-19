@@ -27,23 +27,7 @@ install:
 build_script:
   - appveyor DownloadFile https://raw.githubusercontent.com/joefitzgerald/go-config/master/build-package-remote.ps1 -FileName .\build-package.ps1
   - powershell -noninteractive -noprofile -command .\build-package.ps1
-  - .\atom\atom.exe -v
-  - .\atom\atom.exe --test spec
-  - ps: Start-Process "C:\projects\go-config\atom\atom.exe" "-v" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
-  - ps: Get-Content .\out.txt
-  - ps: Get-Content .\err.txt
-  - ps: Start-Process "C:\projects\go-config\atom\atom.exe" "--test","spec" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
-  - ps: Get-Content .\out.txt
-  - ps: Get-Content .\err.txt
-  - ps: Start-Process "python" "--version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
-  - ps: Get-Content .\out.txt
-  - ps: Get-Content .\err.txt
-  - ps: Start-Process "node" "--version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt  -Wait
-  - ps: Get-Content .\out.txt
-  - ps: Get-Content .\err.txt
-  - ps: Start-Process "go" "version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
-  - ps: Get-Content .\out.txt
-  - ps: Get-Content .\err.txt  
+  - .\atom\resources\app\apm\bin\apm.cmd test --path .\atom\resources\cli\atom.cmd
 
 test: off
 deploy: off
