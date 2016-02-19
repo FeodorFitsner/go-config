@@ -29,10 +29,10 @@ build_script:
   - powershell -noninteractive -noprofile -command .\build-package.ps1
   - .\Atom\resources\cli\atom.cmd -w -v
   - .\Atom\resources\cli\atom.cmd -w --test spec
-  - ps: Start-Process "C:\projects\go-config\Atom\resources\cli\atom.cmd" "-w","-v" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Start-Process "C:\projects\go-config\atom\atom.exe" "-v" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
   - ps: Get-Content .\out.txt
   - ps: Get-Content .\err.txt
-  - ps: Start-Process "C:\projects\go-config\Atom\resources\cli\atom.cmd" "-w","--test","spec" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Start-Process "C:\projects\go-config\atom\atom.exe" "--test","spec" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
   - ps: Get-Content .\out.txt
   - ps: Get-Content .\err.txt
   - ps: Start-Process "python" "--version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
