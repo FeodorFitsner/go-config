@@ -27,8 +27,8 @@ install:
 build_script:
   - appveyor DownloadFile https://raw.githubusercontent.com/joefitzgerald/go-config/master/build-package-remote.ps1 -FileName .\build-package.ps1
   - powershell -noninteractive -noprofile -command .\build-package.ps1
-  - .\Atom\resources\cli\atom.cmd -w -v
-  - .\Atom\resources\cli\atom.cmd -w --test spec
+  - .\atom\atom.exe -v
+  - .\atom\atom.exe --test spec
   - ps: Start-Process "C:\projects\go-config\atom\atom.exe" "-v" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
   - ps: Get-Content .\out.txt
   - ps: Get-Content .\err.txt
