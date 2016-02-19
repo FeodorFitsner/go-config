@@ -29,9 +29,24 @@ build_script:
   - powershell -noninteractive -noprofile -command .\build-package.ps1
   - .\Atom\resources\cli\atom.cmd -w -v
   - .\Atom\resources\cli\atom.cmd -w --test spec
+  - ps: Start-Process "C:\projects\go-config\Atom\resources\cli\atom.cmd" "-w","-v" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Get-Content .\out.txt
+  - ps: Get-Content .\err.txt
+  - ps: Start-Process "C:\projects\go-config\Atom\resources\cli\atom.cmd" "-w","--test","spec" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Get-Content .\out.txt
+  - ps: Get-Content .\err.txt
+  - ps: Start-Process "python" "--version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Get-Content .\out.txt
+  - ps: Get-Content .\err.txt
+  - ps: Start-Process "node" "--version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt  -Wait
+  - ps: Get-Content .\out.txt
+  - ps: Get-Content .\err.txt
+  - ps: Start-Process "go" "version" -RedirectStandardOutput out.txt -RedirectStandardError err.txt -Wait
+  - ps: Get-Content .\out.txt
+  - ps: Get-Content .\err.txt  
 
 test: off
 deploy: off
 
-on_finish:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
