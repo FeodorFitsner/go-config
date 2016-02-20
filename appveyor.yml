@@ -27,10 +27,11 @@ install:
 build_script:
   - appveyor DownloadFile https://raw.githubusercontent.com/joefitzgerald/go-config/master/build-package-remote.ps1 -FileName .\build-package.ps1
   - powershell -noninteractive -noprofile -command .\build-package.ps1
-  - .\atom\resources\app\apm\bin\apm.cmd test --path .\atom\resources\cli\atom.cmd
+  - .\atom\atom.exe -v
+  - .\atom\atom.exe --test spec
 
 test: off
 deploy: off
 
-#on_finish:
-#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
