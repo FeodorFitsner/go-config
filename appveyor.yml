@@ -28,8 +28,7 @@ install:
   - ps: Install-Product node 5
 
 build_script:
-  - appveyor DownloadFile https://raw.githubusercontent.com/joefitzgerald/go-config/master/build-package-remote.ps1 -FileName .\build-package.ps1
-  - powershell -noninteractive -noprofile -command .\build-package.ps1
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/joefitzgerald/go-config/master/build-package.ps1'))
   - .\atom\atom.exe -v
   - .\atom\atom.exe --test spec
 
